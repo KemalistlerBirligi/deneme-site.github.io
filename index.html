@@ -3,10 +3,560 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yusuf'un Sitesi</title>
+    <title>Red Dead Redemption 2 - Vahşi Batı Destanı</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1410 0%, #3d2817 100%);
+            color: #e8dcc4;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23654321" width="1200" height="400"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 3px solid #8b4513;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 10px,
+                rgba(139, 69, 19, 0.1) 10px,
+                rgba(139, 69, 19, 0.1) 20px
+            );
+        }
+
+        h1 {
+            font-size: 4em;
+            color: #d4af37;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: #c9a961;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            background: rgba(26, 20, 16, 0.95);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border-bottom: 2px solid #8b4513;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #d4af37;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #fff;
+            border: 2px solid #d4af37;
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            background: rgba(61, 40, 23, 0.6);
+            margin: 40px 0;
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #8b4513;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        h2 {
+            color: #d4af37;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #8b4513;
+            padding-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        h3 {
+            color: #c9a961;
+            font-size: 1.8em;
+            margin: 25px 0 15px;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: rgba(26, 20, 16, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #8b4513;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: scale(1.05);
+            border-color: #d4af37;
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .feature-card h3 {
+            color: #d4af37;
+            margin-top: 0;
+        }
+
+        .character-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .character {
+            background: rgba(26, 20, 16, 0.6);
+            padding: 20px;
+            border-left: 5px solid #d4af37;
+            border-radius: 5px;
+        }
+
+        .character strong {
+            color: #d4af37;
+            font-size: 1.3em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(139, 69, 19, 0.2));
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #8b4513;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            color: #d4af37;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: #c9a961;
+        }
+
+        footer {
+            background: rgba(26, 20, 16, 0.95);
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top: 3px solid #8b4513;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #8b4513, #a0522d);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid #d4af37;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #a0522d, #8b4513);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .subtitle {
+                font-size: 1.2em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            section {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #8b4513;
+            color: #d4af37;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s;
+            border: 2px solid #d4af37;
+            font-size: 24px;
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        .scroll-top:hover {
+            background: #d4af37;
+            color: #1a1410;
+            transform: translateY(-5px);
+        }
+    </style>
 </head>
 <body>
-    <h1>Merhaba dünya!</h1>
-    <p>Bu benim ilk HTML sitem.</p>
+    <header>
+        <h1>RED DEAD REDEMPTION 2</h1>
+        <p class="subtitle">Vahşi Batı'nın Efsanevi Destanı</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#hikaye">Hikaye</a></li>
+            <li><a href="#oynanıs">Oynanış</a></li>
+            <li><a href="#karakterler">Karakterler</a></li>
+            <li><a href="#dünya">Açık Dünya</a></li>
+            <li><a href="#oduller">Ödüller</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="genel">
+            <h2>Oyun Hakkında</h2>
+            <p>
+                <strong>Red Dead Redemption 2</strong>, Rockstar Games tarafından geliştirilen ve 2018 yılında yayınlanan aksiyon-macera türündeki açık dünya oyunudur. Vahşi Batı'nın son dönemlerinde geçen oyun, video oyunu tarihinin en detaylı ve etkileyici yapımlarından biri olarak kabul edilmektedir.
+            </p>
+            
+            <div class="stats">
+                <div class="stat-box">
+                    <span class="stat-number">175+</span>
+                    <span class="stat-label">Oyun İçi Görev</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Hayvan Türü</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">60+</span>
+                    <span class="stat-label">Oynanabilir Saat</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">50 km²</span>
+                    <span class="stat-label">Harita Boyutu</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="hikaye">
+            <h2>Hikaye ve Tema</h2>
+            <p>
+                Oyun, 1899 yılında Amerika'da geçer. Vahşi Batı çağının sona ermekte olduğu, yasaların güçlendiği ve haydutların sürgün edildiği bir dönemde, Arthur Morgan ve Dutch van der Linde'nin liderliğindeki çete hayatta kalmaya çalışır.
+            </p>
+            <p>
+                <strong>Arthur Morgan</strong>, Dutch van der Linde'nin en sadık adamlarından biridir. Çetenin ideallerini ve kardeşlik bağlarını korumaya çalışırken, değişen dünyada kendi ahlaki değerleriyle yüzleşmek zorunda kalır. Hikaye, sadakat, onur, ihanet ve kurtuluş temaları etrafında dönmektedir.
+            </p>
+            <h3>Temel Temalar</h3>
+            <ul style="list-style: none; padding-left: 20px;">
+                <li style="margin: 10px 0;">🔫 Bir çağın sonu ve değişime direnç</li>
+                <li style="margin: 10px 0;">🤝 Sadakat ve ihanet</li>
+                <li style="margin: 10px 0;">⚖️ Ahlaki tercihler ve sonuçları</li>
+                <li style="margin: 10px 0;">🌅 Kurtuluş ve pişmanlık</li>
+            </ul>
+        </section>
+
+        <section id="oynanıs">
+            <h2>Oynanış Özellikleri</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🎯 Aksiyon ve Dövüş</h3>
+                    <p>Gelişmiş silah mekaniği, Dead Eye sistemi ve gerçekçi savaş dinamikleri ile heyecan dolu çatışmalar.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🐴 At Bağı</h3>
+                    <p>Atınızla kuracağınız bağ oyunda önemli bir rol oynar. Her atın kendine özgü özellikleri ve kişiliği vardır.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎣 Av ve Balıkçılık</h3>
+                    <p>200'den fazla hayvan türü, gerçekçi av mekaniği ve hayvan izleme sistemi.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🏕️ Kamp Hayatı</h3>
+                    <p>Çetenizin kampını yönetin, üyelere katkıda bulunun ve hikayelerini dinleyin.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎲 Mini Oyunlar</h3>
+                    <p>Poker, blackjack, domino gibi birçok mini oyun ve yan aktivite.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚙️ Karakter Geliştirme</h3>
+                    <p>Sağlık, dayanıklılık ve Dead Eye yeteneklerini geliştirin.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="karakterler">
+            <h2>Önemli Karakterler</h2>
+            <div class="character-list">
+                <div class="character">
+                    <strong>Arthur Morgan</strong>
+                    <p>Oyunun ana karakteri. Dutch'ın en güvendiği adamlarından biri ve çetenin omurgası. Sert görünüşlü ama içten bir haydut.</p>
+                </div>
+                <div class="character">
+                    <strong>Dutch van der Linde</strong>
+                    <p>Karizmatik çete lideri. Özgürlük ve ideallerle dolu bir vizyon peşinde koşar, ancak zamanla karanlık bir yola sürüklenir.</p>
+                </div>
+                <div class="character">
+                    <strong>John Marston</strong>
+                    <p>İlk oyunun kahramanı. Arthur'un yakın arkadaşı ve çete üyesi. Ailesi için daha iyi bir gelecek arar.</p>
+                </div>
+                <div class="character">
+                    <strong>Sadie Adler</strong>
+                    <p>Kocasını kaybeden ve intikam peşinde koşan güçlü bir kadın karakter. Zamanla çetenin önemli bir üyesi olur.</p>
+                </div>
+                <div class="character">
+                    <strong>Hosea Matthews</strong>
+                    <p>Dutch'ın en eski arkadaşı ve çetenin akıl hocası. Bilge ve deneyimli bir dolandırıcı.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="dünya">
+            <h2>Açık Dünya</h2>
+            <p>
+                Red Dead Redemption 2, video oyunu tarihinin en detaylı açık dünya haritalarından birine sahiptir. Karlı dağlardan sıcak çöllere, yemyeşil ormanlardan canlı şehirlere kadar çeşitli bölgeler içerir.
+            </p>
+            <h3>Başlıca Bölgeler</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🏔️ Ambarino</h3>
+                    <p>Karlı dağlar ve soğuk iklime sahip kuzey bölgesi.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🌲 West Elizabeth</h3>
+                    <p>Ormanlar, ovalar ve Blackwater şehri.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🏜️ New Austin</h3>
+                    <p>Çöl bölgesi ve Vahşi Batı kasabaları.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🌿 Lemoyne</h3>
+                    <p>Bataklıklar, plantasyonlar ve Saint Denis şehri.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🌾 New Hanover</h3>
+                    <p>Çiftlikler, ovalar ve Valentine kasabası.</p>
+                </div>
+            </div>
+            <p style="margin-top: 30px;">
+                Her bölge, kendine özgü flora, fauna, hava koşulları ve sosyal dinamiklere sahiptir. Oyuncular, bu devasa dünyayı keşfederken sayısız sır, yan görev ve rastlantısal karşılaşma ile karşılaşırlar.
+            </p>
+        </section>
+
+        <section id="oduller">
+            <h2>Ödüller ve Başarılar</h2>
+            <p>
+                Red Dead Redemption 2, yayınlandığında eleştirmenlerden ve oyunculardan tam not aldı ve çok sayıda "Yılın Oyunu" ödülü kazandı.
+            </p>
+            <div class="stats">
+                <div class="stat-box">
+                    <span class="stat-number">97/100</span>
+                    <span class="stat-label">Metacritic Puanı</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">175+</span>
+                    <span class="stat-label">Ödül</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">50M+</span>
+                    <span class="stat-label">Satış</span>
+                </div>
+            </div>
+            <h3>Öne Çıkan Ödüller</h3>
+            <ul style="list-style: none; padding-left: 20px;">
+                <li style="margin: 10px 0;">🏆 The Game Awards 2018 - En İyi Anlatım</li>
+                <li style="margin: 10px 0;">🏆 Golden Joystick Awards - En İyi Hikaye</li>
+                <li style="margin: 10px 0;">🏆 BAFTA Games Awards - En İyi Oyun</li>
+                <li style="margin: 10px 0;">🏆 D.I.C.E. Awards - Yılın Oyunu</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Red Dead Online</h2>
+            <p>
+                Oyunun çevrimiçi modu olan <strong>Red Dead Online</strong>, oyunculara arkadaşlarıyla birlikte Vahşi Batı'yı keşfetme fırsatı sunar. Sürekli güncellenen içerikler, roller (bounty hunter, trader, collector vb.) ve dinamik etkinliklerle dolu bir deneyim sağlar.
+            </p>
+        </section>
+
+        <section>
+            <h2>Sonuç</h2>
+            <p>
+                Red Dead Redemption 2, sadece bir oyun değil, bir sanat eseridir. Detaylı dünyası, derin karakterleri, etkileyici hikayesi ve mükemmel grafikleriyle oyun endüstrisinde bir dönüm noktası oluşturmuştur. Hem tek oyunculu modda epik bir yolculuk, hem de çevrimiçi modda arkadaşlarınızla sonsuz macera arayanlar için benzersiz bir deneyim sunar.
+            </p>
+            <a href="#" class="btn">Daha Fazla Bilgi</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Red Dead Redemption 2 Bilgilendirme Sitesi | Rockstar Games'in tüm hakları saklıdır.</p>
+        <p style="font-size: 0.9em; margin-top: 10px; color: #8b4513;">Bu site hayran yapımıdır ve resmi bir Rockstar Games sitesi değildir.</p>
+    </footer>
+
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <script>
+        // Scroll to top butonu
+        const scrollTop = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scroll için navigation linkleri
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Section'ların fade-in animasyonu
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
