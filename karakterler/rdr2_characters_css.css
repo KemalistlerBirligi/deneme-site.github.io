@@ -1,0 +1,208 @@
+/* Karakterler Sayfası Özel Stilleri */
+
+.page-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><rect fill="%23654321" width="1200" height="300"/><circle cx="200" cy="150" r="80" fill="%23543210" opacity="0.3"/><circle cx="600" cy="100" r="100" fill="%23543210" opacity="0.2"/><circle cx="1000" cy="180" r="90" fill="%23543210" opacity="0.3"/></svg>');
+    background-size: cover;
+    background-position: center;
+    padding: 4rem 0;
+    text-align: center;
+    border-bottom: 4px solid #8b4513;
+    margin-bottom: 3rem;
+}
+
+.page-hero h2 {
+    color: #f4d4a4;
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+    font-weight: bold;
+}
+
+.hero-subtitle {
+    color: #d4a574;
+    font-size: 1.3rem;
+    font-style: italic;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Karakterler Bölümü */
+.characters-section {
+    padding: 2rem 0 4rem;
+}
+
+.characters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+/* Karakter Kartı */
+.character-card {
+    background: rgba(255, 250, 240, 0.95);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    border: 3px solid #8b4513;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.character-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    border-color: #d4a574;
+}
+
+/* Karakter Görseli */
+.character-image {
+    background: linear-gradient(135deg, #5c3a21 0%, #8b4513 100%);
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.character-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 30% 50%, rgba(212, 165, 116, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 70% 50%, rgba(139, 69, 19, 0.2) 0%, transparent 50%);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+.character-initial {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #f4d4a4;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+    font-family: 'Georgia', serif;
+}
+
+/* Karakter Bilgileri */
+.character-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.character-info h3 {
+    color: #5c3a21;
+    font-size: 1.6rem;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+}
+
+.character-role {
+    display: inline-block;
+    background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+    color: #fff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    align-self: flex-start;
+}
+
+.character-info p {
+    color: #3d2817;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+/* Karakter Özellikleri */
+.character-traits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.trait {
+    background: rgba(139, 69, 19, 0.1);
+    color: #5c3a21;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(139, 69, 19, 0.3);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.trait:hover {
+    background: rgba(139, 69, 19, 0.2);
+    border-color: #8b4513;
+    transform: translateY(-2px);
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    .page-hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .characters-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .character-card {
+        max-width: 500px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .character-image {
+        height: 160px;
+    }
+
+    .character-initial {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-hero {
+        padding: 3rem 0;
+    }
+
+    .page-hero h2 {
+        font-size: 1.6rem;
+    }
+
+    .character-info h3 {
+        font-size: 1.4rem;
+    }
+
+    .character-image {
+        height: 140px;
+    }
+
+    .character-initial {
+        font-size: 3rem;
+    }
+}
