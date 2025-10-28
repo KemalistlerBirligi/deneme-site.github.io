@@ -12,7 +12,12 @@
             <div class="logo">
                 <h1>Red Dead Redemption 2</h1>
             </div>
-            <nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menüyü Aç">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="mainNav">
                 <a href="index.html" class="nav-link">Ana Sayfa</a>
                 <a href="karakterler.html" class="nav-link">Karakterler</a>
                 <a href="gorevler.html" class="nav-link">Görevler</a>
@@ -35,6 +40,59 @@
                 <div class="info-box">
                     <h3>Oyun Hakkında</h3>
                     <p>
+                        Red Dead Redemption 2 (RDR2), Rockstar Games tarafından geliştirilen ve 2018'de piyasaya sürülen açık dünya aksiyon-macera oyunudur. Oyunda, 1899 Amerika'sında, Van der Linde çetesinin bir üyesi olan Arthur Morgan'ın hikâyesi anlatılır; oyuncular, Arthur'ın hem çete içindeki hem de dış dünyadaki zorlu yaşamını deneyimler.
+                    </p>
+                    <p>
+                        Oyun, geniş ve detaylı açık dünyası, etkileyici grafikler, derin karakter ilişkileri ve sürükleyici hikâye anlatımıyla öne çıkar. Oyuncular, görevleri tamamlayabilir, avlanabilir, atlarla seyahat edebilir ve çeşitli yan aktivitelerle etkileşime geçebilir.
+                    </p>
+                    <p>
+                        RDR2, hem tek oyunculu modunda sunduğu sinematik deneyim hem de çevrimiçi çok oyunculu modu Red Dead Online ile büyük beğeni kazanmıştır.
+                    </p>
+                </div>
+
+                <div class="features">
+                    <div class="feature-card">
+                        <h4>🎮 Açık Dünya</h4>
+                        <p>Keşfedilmeyi bekleyen geniş ve canlı bir dünya</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📖 Derin Hikaye</h4>
+                        <p>Sinematik kalitede anlatım ve karakter gelişimi</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🤠 Gerçekçi Deneyim</h4>
+                        <p>Detaylı mekanikler ve yaşayan dünya sistemi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Red Dead Redemption 2 Fan Sayfası. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Menü dışına tıklanınca kapat
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !mainNav.contains(e.target)) {
+                mainNav.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>                    <p>
                         Red Dead Redemption 2 (RDR2), Rockstar Games tarafından geliştirilen ve 2018'de piyasaya sürülen açık dünya aksiyon-macera oyunudur. Oyunda, 1899 Amerika'sında, Van der Linde çetesinin bir üyesi olan Arthur Morgan'ın hikâyesi anlatılır; oyuncular, Arthur'ın hem çete içindeki hem de dış dünyadaki zorlu yaşamını deneyimler.
                     </p>
                     <p>
